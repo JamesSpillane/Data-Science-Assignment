@@ -9,6 +9,7 @@ def draw_bs_reps(data, func, size=1):
         # Generate replicates
         bs_replicates[i] = bootstrap_replicate_1d(data,func)
     return bs_replicates
+
 if __name__ == '__main__': #Use of mainguard enables us to import our draw_bs_reps function
     import pandas as pd
     df = pd.read_csv('gandhi_et_al_bouts.csv') #read in 'gandhi_et_al_bouts.csv' as a csv
@@ -22,11 +23,13 @@ if __name__ == '__main__': #Use of mainguard enables us to import our draw_bs_re
     #Compute 95% confidence interval for the bootstrapped replicates for both wt and mut 
     conf_int_wt = np.percentile(bs_reps_wt, [2.5,97.5]) #Computes 95% confidence interval for bootstrapped replicates for wildtype fish
     conf_int_mut = np.percentile(bs_reps_mut, [2.5,97.5]) #Computes 95% confidence interval for bootstrapped replicates for mutated fish
+    
+#--Consider removing unnecessary comments
 
     print("""
     wt:  mean = {0:.3f} min., conf. int. = [{1:.1f}, {2:.1f}] min.
     mut: mean = {3:.3f} min., conf. int. = [{4:.1f}, {5:.1f}] min.
     """.format(mean_wt, *conf_int_wt, mean_mut, *conf_int_mut))
 
-
+#--Consider using a written explination
 
